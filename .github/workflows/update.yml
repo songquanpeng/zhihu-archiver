@@ -1,0 +1,40 @@
+name: update
+
+on:
+  schedule:
+    - cron: "0 12 * * SUN"
+  push:
+    tags:
+      - '*'
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'reason'
+        required: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+      with:
+        ref: "master"
+    - uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
+    - run: |
+        sudo timedatectl set-timezone "Asia/Shanghai"
+        pip install -r requirements.txt
+        python ./update.py
+    - name: update readme
+      env:
+        GIT_USER: "Github Action"
+        GIT_EMAIL: "action@github.com"
+      run: |
+        git config user.name "${GIT_USER}"
+        git config user.email "${GIT_EMAIL}"
+        git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git
+        git checkout master
+        git add ./README.md
+        git commit -m ":book: update by Github Action"
+        git push -u origin master
