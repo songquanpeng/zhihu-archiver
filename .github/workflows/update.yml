@@ -36,5 +36,5 @@ jobs:
         git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git
         git checkout master
         git add .
-        git commit -m ":book: update by Github Action"
+        git commit -m "Update by Github Action"
         git push -u origin master

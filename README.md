@@ -7,6 +7,8 @@
 
 仓库地址：https://github.com/songquanpeng/zhihu-archiver
 
+Fork 示例仓库地址：https://github.com/justsong-lab/zhihu-archiver
+
 ## 部署
 ### 部署方式 #1：GitHub Action + GitHub Pages
 1. 首先 fork 本项目；
