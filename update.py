@@ -93,13 +93,28 @@ def build_toc():
             full_path = os.path.join(base_path, path)
             if not os.path.isdir(full_path):
                 continue
-            f.write(f"* [{path}]({path}/)\n")
+            year, month = path.split('-')
+            f.write(f"* [{year} 年 {month} 月]({path}/)\n")
             sub_files = os.listdir(full_path)
             sub_files.sort()
             for file in sub_files:
                 if file == 'README.md':
                     continue
-                f.write(f"  * [{file}]({path}/{file})\n")
+                day = file.split('.')[0]
+                f.write(f"  * [{month} 月 {day} 日]({path}/{file})\n")
+
+
+def update_chapter(chapter_str):
+    with open(os.path.join(base_path, chapter_str, "README.md"), 'w', encoding='utf-8') as f:
+        year, month = chapter_str.split('-')
+        f.write(f"# {year} 年 {month} 月\n\n")
+        paths = os.listdir(os.path.join(base_path, chapter_str))
+        paths.sort()
+        for path in paths:
+            if path == 'README.md':
+                continue
+            day = path.split('.')[0]
+            f.write(f"+ [{month} 月 {day} 日的知乎热榜存档](/{chapter_str}/{day})\n")
 
 
 def main():
@@ -112,11 +127,10 @@ def main():
     title = f"{year} 年 {month} 月 {day} 日的知乎热榜存档"
     if not os.path.exists(os.path.join(base_path, chapter_str)):
         os.mkdir(os.path.join(base_path, chapter_str))
-        with open(os.path.join(base_path, chapter_str, 'README.md'), 'w', encoding='utf-8') as f:
-            f.write(f"# {year} 年 {month} 月")
 
     file_path = os.path.join(base_path, chapter_str, page_str)
     write_content(data, title, time_str, file_path)
+    update_chapter(chapter_str)
     copyfile("./README.md", "./docs/README.md")
     build_toc()
 
