@@ -79,7 +79,7 @@ def write_content(data, title, time, path):
             title = item['title']
             description = item['description']
             hot = item['hot']
-            f.write(f"### {i + 1}. {title}\n")
+            f.write(f"### [{i + 1}. {title}]({link})\n")
             f.write(f"{hot} 链接：[{link}]({link})\n\n")
             f.write(f"{description}\n\n")
 
