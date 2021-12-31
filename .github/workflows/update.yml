@@ -25,7 +25,7 @@ jobs:
     - run: |
         sudo timedatectl set-timezone "Asia/Shanghai"
         pip install -r requirements.txt
-        python ./update.py
+        python ./main.py
     - name: update readme
       env:
         GIT_USER: "Github Action"
