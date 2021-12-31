@@ -83,8 +83,8 @@ def fetch_by_api():
 
 def fetch():
     try:
-        data = fetch_by_api()
-    except:
-        print("Failed to fetch from api.")
         data = fetch_by_html()
+    except:
+        print("Failed to fetch from html.")
+        data = fetch_by_api()
     return data
