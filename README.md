@@ -7,15 +7,7 @@
 
 仓库地址：https://github.com/songquanpeng/zhihu-archiver
 
-Fork 示例仓库地址：https://github.com/justsong-lab/zhihu-archiver
-
 ## 部署
-### 部署方式 #1：GitHub Action + GitHub Pages
-1. 首先 fork 本项目；
-2. 之后去 Actions 页面启动 workflow。
-3. 去仓库设置页面启用 GitHub Pages，选择 master 分支下的 docs 目录。
-
-### 部署方式 #2：自己的服务器 + GitHub Pages
 1. 首先 fork 本项目；
 2. 之后在你的服务器下 clone 你的 fork，并进入项目目录；
 3. 配置 Python 环境并安装依赖：
